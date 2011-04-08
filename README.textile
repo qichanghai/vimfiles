@@ -1,0 +1,32 @@
+h1 Usage
+
+<pre><code>
+git clone git://github.com/andl/vimfiles.git ~/.vim
+</pre></code>
+
+<pre><code>
+git submodule update --init
+</code></pre>
+
+Linux:
+<pre><code>
+echo "source ~/.vim/vimrc" > ~/.vimrc
+</code></pre>
+
+<pre><code>
+echo "source ~/.vim/gvimrc" > ~/.gvimrc
+</code></pre>
+
+On Windows you should create a <tt>_vimrc</tt> (underline instead of dot) and add
+the following line inside:
+
+<pre><code>
+source ~/vimfiles/vimrc
+</code></pre>
+
+Create a <tt>_gvimrc</tt> (underline instead of dot) and add
+the following line inside:
+
+<pre><code>
+source ~/vimfiles/gvimrc
+</code></pre>

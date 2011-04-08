@@ -1,4 +1,3 @@
-" This is andrew's vimrc file
 "necessary on some Linux distros for pathogen to properly load bundles
 "added by anfernee
 "add another line by anfernee
@@ -50,6 +49,7 @@ set visualbell t_vb=
 nmap <Down> gj
 nmap <Up> gk
 set fo=l
+
 
 "statusline setup
 set statusline=%f       "tail of the filename
@@ -416,3 +416,12 @@ vmap <D-[> <gv
 vmap <D-]> >gv
 
 let ScreenShot = {'Icon':0, 'Credits':0, 'force_background':'#FFFFFF'}
+
+" highlight trailing whitespace
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red

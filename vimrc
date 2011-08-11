@@ -1,6 +1,8 @@
+"avoiding annoying CSApprox warning message
+let g:CSApprox_verbose_level = 0
+
 "necessary on some Linux distros for pathogen to properly load bundles
-"added by anfernee
-"add another line by anfernee
+filetype on
 filetype off
 
 "load pathogen managed plugins
@@ -60,43 +62,7 @@ set statusline+=[%{GitBranch()}]
 "RVM
 set statusline+=%{exists('g:loaded_rvm')?rvm#statusline():''}
 
-"display a warning if fileformat isnt unix
-"set statusline+=%#warningmsg#
-"set statusline+=%{&ff!='unix'?'['.&ff.']':''}
-"set statusline+=%*
-
-"Display a warning if file encoding isnt utf-8
-"set statusline+=%#warningmsg#
-"set statusline+=%{(&fenc!='utf-8'&&&fenc!='')?'['.&fenc.']':''}
-"set statusline+=%*
-
-"set statusline+=%h      "help file flag
-"set statusline+=%y      "filetype
-"set statusline+=%r      "read only flag
-"set statusline+=%m      "modified flag
-
-"display a warning if &et is wrong, or we have mixed-indenting
-"set statusline+=%#error#
-"set statusline+=%{StatuslineTabWarning()}
-"set statusline+=%*
-"
-"set statusline+=%{StatuslineTrailingSpaceWarning()}
-"
-"set statusline+=%{StatuslineLongLineWarning()}
-"
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-
-"display a warning if &paste is set
-"set statusline+=%#error#
-"set statusline+=%{&paste?'[paste]':''}
-"set statusline+=%*
-
 set statusline+=%=      "left/right separator
-
-"set statusline+=%{StatuslineCurrentHighlight()}\ \ "current highlight
-
 set statusline+=%c,     "cursor column
 set statusline+=%l/%L   "cursor line/total lines
 set statusline+=\ %P    "percent through file
@@ -279,11 +245,6 @@ if has("gui_running")
         "macmenu &File.New\ Tab key=<nop>
         "map <D-t> :CommandT<CR>
         " make Mac's Option key behave as the Meta key
-        set invmmta
-        try
-          set transparency=5
-        catch
-        endtry
     endif
 
     if has("gui_win32") || has("gui_win32s")
@@ -341,6 +302,9 @@ map <A-q> :cclose<CR>
 map <A-j> :cnext<CR>
 map <A-k> :cprevious<CR>
 
+"key mapping for Gundo
+nnoremap <F4> :GundoToggle<CR>
+
 "snipmate setup
 try
   source ~/.vim/snippets/support_functions.vim
@@ -352,13 +316,24 @@ function! s:SetupSnippets()
 
     "if we're in a rails env then read in the rails snippets
     if filereadable("./config/environment.rb")
+      try
         call ExtractSnips("~/.vim/snippets/ruby-rails", "ruby")
         call ExtractSnips("~/.vim/snippets/eruby-rails", "eruby")
+      catch
+        call ExtractSnips("~/vimfiles/snippets/ruby-rails", "ruby")
+        call ExtractSnips("~/vimfiles/snippets/eruby-rails", "eruby")
+      endtry
     endif
 
-    call ExtractSnips("~/.vim/snippets/html", "eruby")
-    call ExtractSnips("~/.vim/snippets/html", "xhtml")
-    call ExtractSnips("~/.vim/snippets/html", "php")
+    try
+      call ExtractSnips("~/.vim/snippets/html", "eruby")
+      call ExtractSnips("~/.vim/snippets/html", "xhtml")
+      call ExtractSnips("~/.vim/snippets/html", "php")
+    catch
+      call ExtractSnips("~/vimfiles/snippets/html", "eruby")
+      call ExtractSnips("~/vimfiles/snippets/html", "xhtml")
+      call ExtractSnips("~/vimfiles/snippets/html", "php")
+    endtry
 endfunction
 
 "visual search mappings
@@ -396,6 +371,20 @@ function! s:HighlightLongLines(width)
     endif
 endfunction
 
+" Strip trailing whitespace
+function! <SID>StripTrailingWhitespaces()
+    " Preparation: save last search, and cursor position.
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    " Do the business:
+    %s/\s\+$//e
+    " Clean up: restore previous search history, and cursor position
+    let @/=_s
+    call cursor(l, c)
+endfunction
+autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+
 "key mapping for window navigation
 map <C-h> <C-w>h
 map <C-j> <C-w>j
@@ -425,3 +414,20 @@ autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+"Enabling Zencoding
+let g:user_zen_settings = {
+  \  'php' : {
+  \    'extends' : 'html',
+  \    'filters' : 'c',
+  \  },
+  \  'xml' : {
+  \    'extends' : 'html',
+  \  },
+  \  'haml' : {
+  \    'extends' : 'html',
+  \  },
+  \  'erb' : {
+  \    'extends' : 'html',
+  \  },
+ \}
+

@@ -261,7 +261,7 @@ else
         colorscheme railscasts
     else
         "colorscheme default
-        colorscheme desert256 
+        colorscheme desert256
     endif
 endif
 
@@ -431,3 +431,5 @@ let g:user_zen_settings = {
   \  },
  \}
 
+" set tags file lookup
+set tags=./tags;/

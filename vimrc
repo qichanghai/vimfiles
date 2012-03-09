@@ -57,7 +57,7 @@ set fo=l
 set statusline=%f       "tail of the filename
 
 "Git
-set statusline+=[%{GitBranch()}]
+set statusline+=%{fugitive#statusline()}
 
 "RVM
 set statusline+=%{exists('g:loaded_rvm')?rvm#statusline():''}
@@ -179,8 +179,9 @@ function! s:Median(nums)
 endfunction
 
 "indent settings
-set shiftwidth=2
-set softtabstop=2
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 set expandtab
 set autoindent
 
@@ -433,3 +434,9 @@ let g:user_zen_settings = {
 
 " set tags file lookup
 set tags=./tags;/
+" when press { + Enter, the {} block will expand.
+imap {<CR> {}<ESC>i<CR><ESC>O
+
+" NERDTree settings
+nmap wm :NERDTree<cr>
+let NERDTreeIgnore=['\.swp$']

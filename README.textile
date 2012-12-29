@@ -1,5 +1,7 @@
+h1. Vim files forked from andl/vimfiles.
+
 <pre><code>
-git clone git://github.com/andl/vimfiles.git ~/.vim
+git clone git://github.com/qichanghai/vimfiles.git ~/.vim
 </pre></code>
 
 <pre><code>

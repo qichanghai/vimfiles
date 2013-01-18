@@ -179,8 +179,8 @@ function! s:Median(nums)
 endfunction
 
 "indent settings
-set shiftwidth=2
-set softtabstop=2
+set shiftwidth=4
+set softtabstop=4
 set expandtab
 set autoindent
 
@@ -433,3 +433,15 @@ let g:user_zen_settings = {
 
 " set tags file lookup
 set tags=./tags;/
+
+"Set modeline
+" Append modeline after last line in buffer.
+" Use substitute() instead of printf() to handle '%%s' modeline in LaTeX
+" files.
+function! AppendModeline()
+  let l:modeline = printf(" vim: set ts=%d sw=%d tw=%d %set :",
+           \ &tabstop, &shiftwidth, &textwidth, &expandtab ? '' : 'no')
+   let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
+  call append(line("$"), l:modeline)
+endfunction
+nnoremap <silent> <Leader>ml :call AppendModeline()<CR>"

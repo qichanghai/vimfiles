@@ -1,14 +1,7 @@
-h1. Usage
-
-Troubleshoot: Because of the large amount of submodules, if you ever have any
-trouble after pulling from the repository, it will be easier to just back up
-your old .vim folder and just git clone a new version.
-
-Clone this repo into your home directory either as .vim (linux/mac) or
-vimfiles (Windows). Such as:
+h1. Vim files forked from qichanghai/vimfiles which is from andl/vimfiles.
 
 <pre><code>
-git clone git://github.com/andl/vimfiles.git ~/.vim
+git clone git://github.com/qichanghai/vimfiles.git ~/.vim
 </pre></code>
 
 <pre><code>
@@ -19,19 +12,6 @@ Linux:
 <pre><code>
 echo "source ~/.vim/vimrc" > ~/.vimrc
 </code></pre>
-
-On Windows you should create a <tt>_vimrc</tt> (underline instead of dot) and add
-the following line inside:
-
-<pre><code>
-source ~/vimfiles/vimrc
-</code></pre>
-
-This way you can override the default configuration by adding your own inside
-this file.
-
-You should also create a new <tt>.gvimrc</tt> file in your home directory. You can do
-it on Linux/Mac like this:
 
 <pre><code>
 echo "source ~/.vim/gvimrc" > ~/.gvimrc
@@ -54,15 +34,14 @@ h2. Dependencies
 
 You will need these dependencies figured out:
 
-* Ruby (for the Command-T plugin)
+* Ruby (for the fuzzy finder plugin)
 * Exuberant Ctags (http://ctags.sourceforge.net/)
 * Ncurses-term (in Linux only)
-* curl (for the Gist plugin)
 
 In Ubuntu, for example, you will have to do:
 
 <pre><code>
-apt-get install exuberant-ctags ncurses-term curl
+apt-get install exuberant-ctags ncurses-term
 </code></pre>
 
 In OS X, you can install ctags with homebrew
@@ -78,8 +57,8 @@ look for Luis Lavena's latest Ruby Installer (http://rubyforge.org/projects/ruby
 
 h1. IMPORTANT: Command-T
 
-The latest version replaces the old Fuzzy Finder with a new one called
-"Command-T" form wincent.com. I've replaced the old "Command-T" key
+The latest version replaces the old Fuzzy Finder with a new one called 
+"Command-T" form wincent.com. I've replaced the old "Command-T" key 
 binding that used to open new tabs and assigned it to this new plugin
 so it behaves the same as Textmate.
 
@@ -88,12 +67,12 @@ extension, so you will have to do this:
 
 <pre><code>
 rvm use system # use this line if using rvm
-cd ~/.vim/bundle/vim-command-t/ruby/command-t
+cd ~/.vim/bundle/Command-T/ruby/command-t
 ruby extconf.rb
 make
 </code></pre>
 
-This means that you need to have your Ruby source files and GCC also
+This means that you need to have your Ruby source files and GCC also 
 installed. A binary for Windows is already bundled so it should just
 work. I've also included a binary compiled for Ruby Enterprise Edition,
 but if you are using other Ruby distros, you will need to recompile.
@@ -121,13 +100,12 @@ If this happens to you, update Vim to 7.3.154:
 hg clone https://vim.googlecode.com/hg/ ~/vim
 cd ~/vim
 hg update -C v7-3-154
-./configure --enable-rubyinterp --with-features=huge --enable-gui=gnome2
+./configure --enable-rubyinterp
 make
 sudo make install
 </code></pre>
 
 More details can be found "here":http://kresimirbojcic.com/2011/05/14/installing-command-t-ubunutu-11.04-ruby-1.9.2.html
-Note that the options '--with-features=huge --enable-gui=gnome2' are not mentioned on the post above but they are necessary to also update the graphical version of vim (gvim).
 
 h2. Learn Vim
 

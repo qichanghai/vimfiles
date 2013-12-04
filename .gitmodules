@@ -152,3 +152,9 @@
 [submodule "bundle/mustache"]
 	path = bundle/mustache
 	url = git://github.com/juvenn/mustache.vim.git
+[submodule "bundle/dracula-theme"]
+	path = bundle/dracula-theme
+	url = git@github.com:zenorocha/dracula-theme.git
+[submodule "bundle/funcoo"]
+	path = bundle/funcoo
+	url = https://github.com/rizzatti/funcoo.vim.git

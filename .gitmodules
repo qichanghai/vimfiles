@@ -2,6 +2,9 @@
 	path = snippets
 	url = git://github.com/akitaonrails/snipmate-snippets.git
   ignore = dirty
+[submodule "bundle/mustache"]
+	path = bundle/mustache
+	url = git://github.com/mustache/vim-mustache-handlebars.git
 [submodule "bundle/rails"]
 	path = bundle/rails
 	url = git://github.com/tpope/vim-rails.git
@@ -149,12 +152,9 @@
 [submodule "bundle/vim-gitgutter"]
 	path = bundle/vim-gitgutter
 	url = https://github.com/airblade/vim-gitgutter.git
-[submodule "bundle/mustache"]
-	path = bundle/mustache
-	url = git://github.com/juvenn/mustache.vim.git
-[submodule "bundle/dracula-theme"]
-	path = bundle/dracula-theme
-	url = git@github.com:zenorocha/dracula-theme.git
-[submodule "bundle/funcoo"]
-	path = bundle/funcoo
-	url = https://github.com/rizzatti/funcoo.vim.git
+[submodule "bundle/previm"]
+	path = bundle/previm
+	url = https://github.com/kannokanno/previm.git
+[submodule "bundle/open-browser"]
+	path = bundle/open-browser
+	url = https://github.com/tyru/open-browser.vim.git
